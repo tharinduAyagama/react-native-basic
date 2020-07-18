@@ -13,12 +13,27 @@ export default function App() {
   }
 
   return (
+    // <View style={styles.container}>
+    //     <Text>my name is {name}</Text>
+    //     <Text>my name is {person.name} and my age is {person.age}</Text>
+    //     <View style={styles.button}>
+    //       <Button title='change states' onPress={clickHandler} />
+    //     </View>
+    // </View>
+
     <View style={styles.container}>
-        <Text>my name is {name}</Text>
-        <Text>my name is {person.name} and my age is {person.age}</Text>
-        <View style={styles.button}>
-          <Button title='change states' onPress={clickHandler} />
-        </View>
+      <Text>Name:</Text>
+      <TextInput
+        style = {styles.input}
+        placeholder = 'mark'
+        onChangeText = {(val) => setName(val)} />
+      <Text>Age:</Text>
+      <TextInput
+        keyboardType = 'numeric' 
+        style = {styles.input}
+        placeholder = '23'
+        onChangeText = {(val) => setAge(val)} />
+      <Text>ur name is {name} and age is {age}</Text>
     </View>
   );
 }
