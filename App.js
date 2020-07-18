@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
 
 export default function App() {
 
@@ -7,13 +7,13 @@ export default function App() {
   const [age , setAge] = useState(10);
   const [person , setPerson] = useState({name: 'tharindu' , age: 20});
   const [people , setPeople] = useState([
-    {key:1 , name:'tharindu'},
-    {key:2 , name:'hirantha'},
-    {key:3 , name:'bandara'},
-    {key:4 , name:'ayagama'},
-    {key:5 , name:'saman'},
-    {key:6 , name:'uku'},
-    {key:7 , name:'raba'}
+    {id:1 , name:'tharindu'},
+    {id:2 , name:'hirantha'},
+    {id:3 , name:'bandara'},
+    {id:4 , name:'ayagama'},
+    {id:5 , name:'saman'},
+    {id:6 , name:'uku'},
+    {id:7 , name:'raba'}
   ]);
 
   const clickHandler = () => {
@@ -45,17 +45,28 @@ export default function App() {
     //   <Text>ur name is {name} and age is {age}</Text>
     // </View>
 
-    <View>
-      <ScrollView>
-        {people.map(
-          (item) => (
-            <View key = {item.key} >
-              <Text style={styles.item}>{item.name}</Text>
-            </View>
-        )
-        )}
-      </ScrollView>
+    // <View>
+    //   <ScrollView>
+    //     {people.map(
+    //       (item) => (
+    //         <View key = {item.key} >
+    //           <Text style={styles.item}>{item.name}</Text>
+    //         </View>
+    //     )
+    //     )}
+    //   </ScrollView>
+    // </View>
+
+    <View style={styles.container}>
+      <FlatList
+        keyExtractor = {(item) => item.id}
+        numColumns={2}
+        data={people}
+        renderItem={({ item }) =>
+          (<Text style={styles.item}>{item.name}</Text>)
+        } />
     </View>
+
   );
 }
 
@@ -79,6 +90,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     padding: 30,
     fontSize: 30,
-    backgroundColor: 'orange'
+    backgroundColor: 'orange',
+    marginHorizontal: 10
   }
 });
