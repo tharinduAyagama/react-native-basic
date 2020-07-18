@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 
 export default function App() {
 
@@ -19,6 +19,13 @@ export default function App() {
   const clickHandler = () => {
     setName('hirantha');
     setPerson({name: 'hirantha' , age: 40});
+  }
+
+  const touchHandler = (id) => {
+    console.log(id);
+    setPeople((prevPeople) => {
+      return prevPeople.filter(x => x.id != id)
+    })
   }
 
   return (
@@ -63,7 +70,9 @@ export default function App() {
         numColumns={2}
         data={people}
         renderItem={({ item }) =>
-          (<Text style={styles.item}>{item.name}</Text>)
+          <TouchableOpacity onPress = {() => touchHandler(item.id)}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>
         } />
     </View>
 
